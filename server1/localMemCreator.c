@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<sys/ipc.h>
 #include<sys/shm.h>
+#include<stdlib.h>
 
 // this only allocates a shared memory ,(takes key as input from user)
 
@@ -11,8 +12,16 @@ int sizeOfMem;
 void main(){
 	printf("Enter the unique key for your shared memory:\n");
 	scanf("%d", &key);
+	if(key > 32767){
+		printf("Key exceeded limit, exiting\n");
+		exit(1);
+	}
 	printf("Enter the size of memory you want to allocated: \n");
-	scanf("%d", &sizeOfMem);	
+	scanf("%d", &sizeOfMem);
+	if(sizeOfMem > 1342177280){
+		printf("Size of memory exceeded limit, exiting\n");
+		exit(1);
+	}	
 
 	//printf("Unique key: %d \n", key);
 	// ^^ this has the unique key
