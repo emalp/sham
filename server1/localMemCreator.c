@@ -2,12 +2,13 @@
 #include<sys/ipc.h>
 #include<sys/shm.h>
 #include<stdlib.h>
-
+#include "page_size_calculator.c"
 // this only allocates a shared memory ,(takes key as input from user)
 
 int key;
 int sharedMem;
 int sizeOfMem;
+int pageSize;
 
 void main(){
 	printf("Enter the unique key for your shared memory:\n");
@@ -23,10 +24,6 @@ void main(){
 		exit(1);
 	}	
 
-	//printf("Unique key: %d \n", key);
-	// ^^ this has the unique key
-	//printf("Size of mem allocated: %d \n", sizeOfMem);
-
 	// CHECK WHAT SHM_HUGETLB IS , OR WHAT  hugetlb pages are
 
 	sharedMem = shmget(key, sizeOfMem, IPC_CREAT | IPC_EXCL);
@@ -37,6 +34,7 @@ void main(){
 	else{
 		printf("ERROR:: Could not create shared memory");
 	}	
-	//  DO PROPER VALIDATION CHECK FOR THIS
+	pageSize = pageSizeGiver();
+	printf("Page size is : %d", pageSize);
 }
 
