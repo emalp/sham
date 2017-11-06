@@ -6,7 +6,7 @@
 // this only allocates a shared memory ,(takes key as input from user)
 
 int key;
-int sharedMem;
+int shm_id;
 int sizeOfMem;
 int pageSize;
 
@@ -26,10 +26,10 @@ void main(){
 
 	// CHECK WHAT SHM_HUGETLB IS , OR WHAT  hugetlb pages are
 
-	sharedMem = shmget(1234, sizeOfMem, IPC_CREAT | IPC_EXCL);
+	shm_id = shmget(key, sizeOfMem, IPC_CREAT | IPC_EXCL);
 
-	if(sharedMem > 0){
-		printf("The shared memory location is : %d \n", sharedMem);
+	if(shm_id > 0){
+		printf("The shared memory ID is : %d \n", shm_id);
 	}
 	else{
 		printf("ERROR:: Could not create shared memory");
