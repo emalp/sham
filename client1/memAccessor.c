@@ -1,5 +1,13 @@
 #include<stdio.h>
+#include<sys/types.h>
+#include<sys/shm.h>
 
 void main(){
-	printf("This is the mem accesor, will read the memort by using the secret key");
+	int test;
+
+	int addr;
+	addr = shmat(1234, 1376266,SHM_EXEC );
+	
+	printf("Got the attached mem %d", addr);
+
 }

@@ -26,7 +26,7 @@ void main(){
 
 	// CHECK WHAT SHM_HUGETLB IS , OR WHAT  hugetlb pages are
 
-	sharedMem = shmget(key, sizeOfMem, IPC_CREAT | IPC_EXCL);
+	sharedMem = shmget(1234, sizeOfMem, IPC_CREAT | IPC_EXCL);
 
 	if(sharedMem > 0){
 		printf("The shared memory location is : %d \n", sharedMem);
