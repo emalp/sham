@@ -1,2 +1,7 @@
 # sham
 Creates an shared memory mapping between two or more computers on the internet.
+
+Server
+-------
+
+CUR: The server creates a shared memory in the host computer and saves the details in two files in the current directory
