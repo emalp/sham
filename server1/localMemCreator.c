@@ -21,7 +21,7 @@ int detailsWriter(){
 		printf("Details written to file!\n");
 	}
 	else{
-		printf("Details could not be written to file! error\n");
+		perror("Details could not be written to file! error\n");
 		exit(1);
 	}
 	fclose(detailsFile);
@@ -33,13 +33,13 @@ void main(){
 	printf("Enter the unique key for your shared memory:\n");
 	scanf("%d", &key);
 	if(key > 32767){
-		printf("Key exceeded limit, exiting\n");
+		perror("Key exceeded limit, exiting\n");
 		exit(1);
 	}
 	printf("Enter the size of memory you want to allocate (in bytes): \n");
 	scanf("%d", &sizeOfMem);
 	if(sizeOfMem > 1342177280){
-		printf("Size of memory exceeded limit, exiting\n");
+		perror("Size of memory exceeded limit, exiting\n");
 		exit(1);
 	}	
 
@@ -51,7 +51,7 @@ void main(){
 		printf("The shared memory ID is : %d \n", shm_id);
 	}
 	else{
-		printf("ERROR:: Could not create shared memory\n");
+		perror("ERROR:: Could not create shared memory\n");
 		exit(1);
 	}	
 	pageSize = pageSizeGiver();
