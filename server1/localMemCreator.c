@@ -9,6 +9,25 @@ int key;
 int shm_id;
 int sizeOfMem;
 int pageSize;
+FILE *detailsFile;
+int allids[10];
+
+
+int detailsWriter(){
+
+	detailsFile = fopen("localDetails.em", "a");
+	fprintf(detailsFile, "%d %d \n", key, sizeOfMem);
+	if(detailsFile >0){
+		printf("Details written to file!\n");
+	}
+	else{
+		printf("Details could not be written to file! error\n");
+		exit(1);
+	}
+	fclose(detailsFile);
+	return 0;
+}
+
 
 void main(){
 	printf("Enter the unique key for your shared memory:\n");
@@ -17,7 +36,7 @@ void main(){
 		printf("Key exceeded limit, exiting\n");
 		exit(1);
 	}
-	printf("Enter the size of memory you want to allocated: \n");
+	printf("Enter the size of memory you want to allocate (in bytes): \n");
 	scanf("%d", &sizeOfMem);
 	if(sizeOfMem > 1342177280){
 		printf("Size of memory exceeded limit, exiting\n");
@@ -32,9 +51,12 @@ void main(){
 		printf("The shared memory ID is : %d \n", shm_id);
 	}
 	else{
-		printf("ERROR:: Could not create shared memory");
+		printf("ERROR:: Could not create shared memory\n");
+		exit(1);
 	}	
 	pageSize = pageSizeGiver();
-	printf("Page size is : %d", pageSize);
+	printf("Your memory size will be rounded to the multiple of : %d bytes\n", pageSize);
+
+	detailsWriter();
 }
 
