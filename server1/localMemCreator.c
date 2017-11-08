@@ -9,22 +9,23 @@ int key;
 int shm_id;
 int sizeOfMem;
 int pageSize;
-FILE *detailsFile;
+FILE *keymemLocation;
 int allids[10];
 
 
 int detailsWriter(){
 
-	detailsFile = fopen("localDetails.em", "a");
-	fprintf(detailsFile, "%d %d \n", key, sizeOfMem);
-	if(detailsFile >0){
+	keymemLocation = fopen("keyMemSizepairs", "w");
+	
+	fprintf(keymemLocation, "%d\n%d\n%d\n", key, sizeOfMem, shm_id);
+	if(keymemLocation >0){
 		printf("Details written to file!\n");
 	}
 	else{
 		perror("Details could not be written to file! error\n");
 		exit(1);
 	}
-	fclose(detailsFile);
+	fclose(keymemLocation);
 	return 0;
 }
 
