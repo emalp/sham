@@ -5,3 +5,5 @@ Server
 -------
 
 CUR: The server creates a shared memory in the host computer and saves the details in two files in the current directory
+
+Any feedback or contribution is accepted.
