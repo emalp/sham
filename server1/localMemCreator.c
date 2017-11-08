@@ -30,7 +30,7 @@ int detailsWriter(){
 }
 
 
-void main(){
+void shmCreate(){
 	printf("Enter the unique key for your shared memory:\n");
 	scanf("%d", &key);
 	if(key > 32767){
@@ -58,6 +58,7 @@ void main(){
 	pageSize = pageSizeGiver();
 	printf("Your memory size will be rounded to the multiple of : %d bytes\n", pageSize);
 
+	// this writes details to the file "keyMemSizePairs"
 	detailsWriter();
 }
 
