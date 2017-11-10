@@ -2,7 +2,7 @@
 #include<sys/ipc.h>
 #include<sys/shm.h>
 #include<stdlib.h>
-#include "page_size_calculator.c"
+#include"pageSizeCalculator.h"
 // this only allocates a shared memory ,(takes key as input from user)
 
 int key;
@@ -13,7 +13,7 @@ FILE *keymemLocation;
 int allids[10];
 
 
-int detailsWriter(){
+void detailsWriter(void){
 
 	keymemLocation = fopen("keyMemSizepairs", "w");
 	
@@ -26,11 +26,11 @@ int detailsWriter(){
 		exit(1);
 	}
 	fclose(keymemLocation);
-	return 0;
+	return;
 }
 
 
-void shmCreate(){
+void shmCreate(void){
 	printf("Enter the unique key for your shared memory:\n");
 	scanf("%d", &key);
 	if(key > 32767){
@@ -60,5 +60,6 @@ void shmCreate(){
 
 	// this writes details to the file "keyMemSizePairs"
 	detailsWriter();
+	return;
 }
 
