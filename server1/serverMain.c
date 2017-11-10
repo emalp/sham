@@ -1,6 +1,5 @@
 #include<stdio.h>
-#include "pageSizeCalculator.h"
-#include "localMemCreator.c"
+#include "localMemCreator.h"
 
 void main(){
 	shmCreate();	

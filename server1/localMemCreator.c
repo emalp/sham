@@ -10,9 +10,8 @@ int shm_id;
 int sizeOfMem;
 int pageSize;
 FILE *keymemLocation;
-int allids[10];
 
-void main(void){
+void shmCreate(void){
 	printf("Enter the unique key for your shared memory:\n");
 	scanf("%d", &key);
 	if(key > 32767){
@@ -26,7 +25,6 @@ void main(void){
 		exit(1);
 	}	
 
-	// CHECK WHAT SHM_HUGETLB IS , OR WHAT  hugetlb pages are
 
 	shm_id = shmget(key, sizeOfMem, IPC_CREAT | IPC_EXCL);
 
