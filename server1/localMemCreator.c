@@ -12,25 +12,7 @@ int pageSize;
 FILE *keymemLocation;
 int allids[10];
 
-
-void detailsWriter(void){
-
-	keymemLocation = fopen("keyMemSizepairs", "w");
-	
-	fprintf(keymemLocation, "%d\n%d\n%d\n", key, sizeOfMem, shm_id);
-	if(keymemLocation >0){
-		printf("Details written to file!\n");
-	}
-	else{
-		perror("Details could not be written to file! error\n");
-		exit(1);
-	}
-	fclose(keymemLocation);
-	return;
-}
-
-
-void shmCreate(void){
+void main(void){
 	printf("Enter the unique key for your shared memory:\n");
 	scanf("%d", &key);
 	if(key > 32767){
@@ -63,3 +45,21 @@ void shmCreate(void){
 	return;
 }
 
+
+
+
+void detailsWriter(void){
+
+	keymemLocation = fopen("keyMemSizepairs", "w");
+	
+	fprintf(keymemLocation, "%d\n%d\n%d\n", key, sizeOfMem, shm_id);
+	if(keymemLocation >0){
+		printf("Details written to file!\n");
+	}
+	else{
+		perror("Details could not be written to file! error\n");
+		exit(1);
+	}
+	fclose(keymemLocation);
+	return;
+}
