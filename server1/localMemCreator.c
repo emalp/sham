@@ -2,7 +2,7 @@
 #include<sys/ipc.h>
 #include<sys/shm.h>
 #include<stdlib.h>
-#include"pageSizeCalculator.h"
+#include"include/pageSizeCalculator.h"
 // this only allocates a shared memory ,(takes key as input from user)
 
 int key;
