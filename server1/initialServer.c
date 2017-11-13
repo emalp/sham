@@ -11,6 +11,8 @@ short family;
 int serverSocket;
 int clientSocket;
 
+int clientMsg; // client's message (Message sent by client)
+
 struct sockaddr_in serverAddress, clientAddress;
 
 
@@ -34,7 +36,8 @@ void startServer(){
 	if(!(serverSocket < 1)){
 		
 		initializeServerAddress();
-
+		
+		// bind the server socket to it's local location	
 		int binding = bind(serverSocket, (struct *)&serverAddress , sizeof(serverAddress) );
 
 		if(binding == 0){
@@ -43,17 +46,29 @@ void startServer(){
 		}
 		
 		// start listening now
-		if(listen(serverSocket, 5) < 0){perror("Server can't listen"); }	
+		if(listen(serverSocket, 5) < 0){perror("Server can't listen"); exit(1); }
+	
 		printf("Server started and listening at port : " + port);		
-
 		
+		// accept the client's connection
 		int clientLength = sizeof(clientAddress);			
 		clientSocket = accept(serverSocket, (struct sockaddr *)&clientAddress, &clientLength);
 		
 		if(clientSocket < 0){ perror("Could not accept client");}
 
-			
+		bzero(buffer, 1024);
+
+		// read the message from the client
+		clientMsg = read(clientSocket, (void *)&buffer, 1024);
+
+		if(clientMsg < 0 ){perror("Can't read from client"); exit(1);}
 		
+		printf("Client's message:\n %s", buffer);
+		
+
+		// read and close the connection for now
+		close(clientSocket);
+		close(serverSocket);
 
 	}
 

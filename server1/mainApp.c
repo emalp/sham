@@ -2,7 +2,7 @@
 #include "include/localMemCreator.h"
 #include "include/initialServer.h"
 void main(){
-	shmCreate();
+//	shmCreate();
 
 	startServer();
 
