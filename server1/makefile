@@ -1,3 +1,3 @@
 
-localServer : serverMain.c localMemCreator.c pageSizeCalculator.c
+localServer : mainApp.c localMemCreator.c pageSizeCalculator.c
 	gcc $^  -o $@
