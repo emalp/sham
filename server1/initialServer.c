@@ -36,19 +36,20 @@ void startServer(){
 	if(!(serverSocket < 1)){
 		
 		initializeServerAddress();
-		
 		// bind the server socket to it's local location	
-		int binding = bind(serverSocket, (struct *)&serverAddress , sizeof(serverAddress) );
+		
+		printf("Server started at port : %d\n", port);	
+		int binding = bind(serverSocket, (struct sockaddr*)&serverAddress , sizeof(serverAddress) );
 
-		if(binding == 0){
+		if(binding < 0){
 			perror("Could not create server socket");
 			exit(1);
 		}
+
 		
 		// start listening now
 		if(listen(serverSocket, 5) < 0){perror("Server can't listen"); exit(1); }
 	
-		printf("Server started and listening at port : " + port);		
 		
 		// accept the client's connection
 		int clientLength = sizeof(clientAddress);			
