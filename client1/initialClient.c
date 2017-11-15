@@ -3,7 +3,8 @@
 #include<sys/socket.h>
 #include<netinet/in.h>
 #include<netdb.h>
-#include "include/initialClient.h"
+#include<stdlib.h>
+//#include "include/initialClient.h"
 
 int serverPort = 9000;
 struct sockaddr_in server_address;
@@ -11,12 +12,13 @@ struct hostent *server;
 
 int clientSocket;
 
-int startClient(){
+void main(){
 
-// create a client socket
+	printf("In the startClient() method");
 	clientSocket = socket(AF_INET, SOCK_STREAM, 0);
 	
-	server = gethostbyname("127.0.0.1");
+	server = gethostbyname("localhost");
+	printf("got host by name");
 	bzero((char *)&server_address, sizeof(server_address));
 	
 	server_address.sin_family = AF_INET;
@@ -24,7 +26,8 @@ int startClient(){
 	bcopy((char *)&server->h_addr ,(char *)&server_address.sin_addr.s_addr, server->h_length );
 
 	server_address.sin_port = htons(serverPort);	
-
+	
+	printf("Connecting to server..");
 	int connected = connect(clientSocket, &server_address, sizeof(server_address));
 
 	if(connected <0){
@@ -38,8 +41,9 @@ int startClient(){
 	char *buf = "Emalp is the best";
 	write(clientSocket, buf, sizeof(buf));
 	
+	printf("Message sent to server!");
 	close(clientSocket);
-return 0;
+return ;
 }
 
 
