@@ -3,7 +3,7 @@
 #include<sys/socket.h>
 #include<netinet/in.h>
 #include<netdb.h>
-
+#include "include/startClient.h"
 
 int serverPort = atoi(9000);
 struct sockaddr_in server_address;
