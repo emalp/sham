@@ -34,5 +34,16 @@ int startClient(){
 
 	printf("Successfully connected to server.\n Ready to start RPC between the computers");
 
+	// this is only for testing purpose.
+	char buf[1024];
+	buf = "Emalp is best!";
+	write(clientsocket, &buf, sizeof(buf));
+	
+	close(clientSocket);
 return 0;
 }
+
+
+
+
+
