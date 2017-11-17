@@ -41,7 +41,7 @@ void startClient(){
 		}
 
 		char *buf = "Emalp";
-		write(clientSocket, buf, sizeof(buf));
+		write(clientSocket, buf, sizeof(buf)+1);
 		printf("Message sent to server\n");
 		close(clientSocket);
 	}
