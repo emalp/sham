@@ -4,6 +4,7 @@
 #include<netinet/in.h>
 #include<netdb.h>
 #include<stdlib.h>
+#include "include/iniClient.h"
 
 const int port = 9000;
 
@@ -48,9 +49,4 @@ void startClient(){
 
 }
 
-int main(){
 
-	startClient();
-
-return 0;
-}
