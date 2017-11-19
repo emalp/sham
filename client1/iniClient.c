@@ -8,7 +8,10 @@
 
 const int port = 9000;
 
+char commandToServer[50];
+
 int clientSocket;
+char serverIp[50];
 
 struct sockaddr_in server_address;
 struct hostent *server_ip_details;
@@ -22,7 +25,9 @@ void startClient(){
 	server_address.sin_family = AF_INET;
 	server_address.sin_port = htons(port);	
 
-	server_ip_details = gethostbyname("localhost");
+	printf("Please enter the server's IP:\n");
+	scanf("%s", &serverIp);	
+	server_ip_details = gethostbyname(serverIp);
 
 	
 	bcopy(server_ip_details->h_addr, (char *)&server_address.sin_addr.s_addr, sizeof(server_ip_details->h_length));
@@ -41,8 +46,12 @@ void startClient(){
 			exit(1);
 		}
 
-		char *buf = "Emalp";
-		write(clientSocket, buf, sizeof(buf)+1);
+		//char *buf = "Emalp\0";
+	
+		printf("Command to server:\n");
+		scanf("%s", &commandToServer);
+
+		write(clientSocket, commandToServer, sizeof(commandToServer)+1);
 		printf("Message sent to server\n");
 		close(clientSocket);
 	}
